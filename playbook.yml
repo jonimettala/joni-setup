@@ -1,0 +1,10 @@
+---
+- name: Mac setup
+  hosts: local
+  gather_facts: true
+
+  roles:
+    - homebrew
+    - dotfiles
+    - nvm
+    - sdkman

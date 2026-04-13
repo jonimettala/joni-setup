@@ -1,0 +1,25 @@
+---
+# Muokkaa nämä omien tarpeidesi mukaan
+
+homebrew_taps: []
+
+homebrew_formulae:
+  - bash
+  - gh       # GitHub CLI
+  - nvm
+  - pymupdf
+
+homebrew_casks:
+  - 1password-cli
+  - copilot-cli
+
+dotfiles_dir: "{{ playbook_dir }}/dotfiles"
+dotfiles_files:
+  - .zshrc
+  - .gitconfig
+  - .gitignore_global
+
+nvm_version: "v0.40.1"
+default_node_version: "node"  # latest stable
+
+# sdkman asennetaan vain — Java-versiot asennat itse: sdk install java

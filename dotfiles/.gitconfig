@@ -1,0 +1,13 @@
+[user]
+	name = Joni Mettälä
+	email = first.last@example.com
+
+[core]
+	excludesfile = ~/.gitignore_global
+	editor = code --wait
+
+[pull]
+	rebase = true
+
+[init]
+	defaultBranch = main

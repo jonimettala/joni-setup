@@ -1,0 +1,24 @@
+---
+- name: Ensure Homebrew is up to date
+  community.general.homebrew:
+    update_homebrew: true
+  tags: homebrew
+
+- name: Add Homebrew taps
+  community.general.homebrew_tap:
+    name: "{{ item }}"
+    state: present
+  loop: "{{ homebrew_taps }}"
+  tags: homebrew
+
+- name: Install Homebrew formulae
+  community.general.homebrew:
+    name: "{{ homebrew_formulae }}"
+    state: present
+  tags: homebrew
+
+- name: Install Homebrew casks
+  community.general.homebrew_cask:
+    name: "{{ homebrew_casks }}"
+    state: present
+  tags: homebrew

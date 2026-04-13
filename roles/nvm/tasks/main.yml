@@ -1,0 +1,24 @@
+---
+- name: Install nvm via brew (if not already installed via brew)
+  community.general.homebrew:
+    name: nvm
+    state: present
+  tags: nvm
+
+- name: Ensure ~/.nvm directory exists
+  ansible.builtin.file:
+    path: "{{ ansible_env.HOME }}/.nvm"
+    state: directory
+    mode: "0755"
+  tags: nvm
+
+- name: Install default Node.js version via nvm
+  ansible.builtin.shell: |
+    export NVM_DIR="{{ ansible_env.HOME }}/.nvm"
+    source "$(brew --prefix nvm)/nvm.sh"
+    nvm install {{ default_node_version }}
+    nvm alias default {{ default_node_version }}
+  args:
+    executable: /bin/bash
+    creates: "{{ ansible_env.HOME }}/.nvm/alias/default"
+  tags: nvm
