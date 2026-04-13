@@ -1,3 +1,5 @@
+alias brewup='brew update && brew upgrade'
+
 alias ll='ls -lahG'
 alias la='ls -AG'
 alias l='ls -CFG'
