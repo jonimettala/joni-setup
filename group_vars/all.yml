@@ -8,6 +8,7 @@ homebrew_formulae:
   - gh       # GitHub CLI
   - nvm
   - pymupdf
+  - awscli
 
 homebrew_casks:
   - 1password-cli
