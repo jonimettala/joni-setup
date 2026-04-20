@@ -38,7 +38,7 @@ cd ~/work/repos/joni-setup
 **Homebrew formulae**
 - `bash` — latest Bash shell
 - `gh` — GitHub CLI
-- `nvm` — Node Version Manager
+- `nvm` — Node Version Manager (also sets up `~/.nvm` and installs latest stable Node)
 - `pymupdf` — PDF library for Python
 - `awscli` — AWS Command Line Interface
 
@@ -53,7 +53,6 @@ cd ~/work/repos/joni-setup
 - `.gitignore_global`
 
 **Other**
-- [NVM](https://github.com/nvm-sh/nvm) — installs latest stable Node.js as default
 - [SDKMAN](https://sdkman.io) — installed only; install Java versions manually with `sdk install java`
 
 ## Customization
