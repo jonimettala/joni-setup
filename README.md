@@ -1,41 +1,41 @@
 # joni-setup
 
-Ansible playbook Mac-koneen setuppaamiseen. Aja `bootstrap.sh` uudella koneella — se asentaa Homebrew:n ja Ansible:n, ja ajaa playbookin.
+Ansible playbook for setting up a Mac. Run `bootstrap.sh` on a new machine — it installs Homebrew and Ansible, then runs the playbook.
 
-## Käyttö
+## Usage
 
 ```bash
-# Kloonaa repo
+# Clone the repo
 git clone https://github.com/YOUR_USERNAME/joni-setup.git ~/work/repos/joni-setup
 cd ~/work/repos/joni-setup
 
-# Aja bootstrap (asentaa Homebrew + Ansible + ajaa playbookin)
+# Run bootstrap (installs Homebrew + Ansible + runs the playbook)
 ./bootstrap.sh
 ```
 
-## Rakenne
+## Structure
 
 ```
 .
-├── bootstrap.sh          # Aloituspiste uudella koneella
-├── playbook.yml          # Pääplaybook
-├── requirements.yml      # Ansible Galaxy -kokoelmat
-├── inventory/local       # localhost-inventaario
-├── group_vars/all.yml    # Kaikki muuttujat (paketit, asetukset)
-├── dotfiles/             # Omat konfiguraatiotiedostot (symlinkataan kotihakemistoon)
+├── bootstrap.sh          # Entry point for a new machine
+├── playbook.yml          # Main playbook
+├── requirements.yml      # Ansible Galaxy collections
+├── inventory/local       # localhost inventory
+├── group_vars/all.yml    # All variables (packages, settings)
+├── dotfiles/             # Personal config files (symlinked to home directory)
 │   ├── .zshrc
 │   ├── .gitconfig
 │   └── .gitignore_global
 └── roles/
-    ├── homebrew/         # Brew formulat ja caskit
-    ├── dotfiles/         # Symlinkit dotfilesille
+    ├── homebrew/         # Brew formulae and casks
+    ├── dotfiles/         # Symlinks for dotfiles
     ├── nvm/              # Node Version Manager
-    └── sdkman/           # SDKMAN (Java/Kotlin jne.)
+    └── sdkman/           # SDKMAN (Java/Kotlin etc.)
 ```
 
-## Muokkaus
+## Customization
 
-Lisää/poista paketteja `group_vars/all.yml`:ssä:
+Add/remove packages in `group_vars/all.yml`:
 
 ```yaml
 homebrew_formulae:
@@ -48,7 +48,7 @@ homebrew_casks:
   - ...
 ```
 
-## Yksittäisten roolien ajo
+## Running individual roles
 
 ```bash
 ansible-playbook playbook.yml -i inventory/local --tags homebrew

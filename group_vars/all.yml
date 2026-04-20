@@ -1,5 +1,5 @@
 ---
-# Muokkaa nämä omien tarpeidesi mukaan
+# Customize these to your own needs
 
 homebrew_taps: []
 
@@ -24,4 +24,4 @@ dotfiles_files:
 nvm_version: "v0.40.1"
 default_node_version: "node"  # latest stable
 
-# sdkman asennetaan vain — Java-versiot asennat itse: sdk install java
+# sdkman is only installed — install Java versions yourself: sdk install java
