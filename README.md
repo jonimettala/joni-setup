@@ -46,6 +46,7 @@ cd ~/work/repos/joni-setup
 - `1password-cli` — 1Password CLI
 - `copilot-cli` — GitHub Copilot CLI
 - `iterm2` — iTerm2 terminal
+- `raycast` — Raycast launcher
 
 **Dotfiles** (symlinked to `~/`)
 - `.zshrc`

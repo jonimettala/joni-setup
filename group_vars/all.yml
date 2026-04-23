@@ -14,6 +14,7 @@ homebrew_casks:
   - 1password-cli
   - copilot-cli
   - iterm2
+  - raycast
 
 dotfiles_dir: "{{ playbook_dir }}/dotfiles"
 dotfiles_files:
