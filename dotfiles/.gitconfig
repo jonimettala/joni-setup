@@ -1,6 +1,5 @@
-[user]
-	name = Joni Mettälä
-	email = first.last@example.com
+[include]
+	path = ~/.gitconfig.local
 
 [core]
 	excludesfile = ~/.gitignore_global

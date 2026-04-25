@@ -7,3 +7,33 @@
     force: true
   loop: "{{ dotfiles_files }}"
   tags: dotfiles
+
+- name: Check if ~/.gitconfig.local exists
+  ansible.builtin.stat:
+    path: "{{ ansible_env.HOME }}/.gitconfig.local"
+  register: gitconfig_local
+  tags: dotfiles
+
+- name: Prompt for git user name
+  ansible.builtin.pause:
+    prompt: "Enter your git user name"
+  register: git_name_input
+  when: not gitconfig_local.stat.exists
+  tags: dotfiles
+
+- name: Prompt for git user email
+  ansible.builtin.pause:
+    prompt: "Enter your git user email"
+  register: git_email_input
+  when: not gitconfig_local.stat.exists
+  tags: dotfiles
+
+- name: Create ~/.gitconfig.local
+  ansible.builtin.copy:
+    dest: "{{ ansible_env.HOME }}/.gitconfig.local"
+    content: |
+      [user]
+      	name = {{ git_name_input.user_input }}
+      	email = {{ git_email_input.user_input }}
+  when: not gitconfig_local.stat.exists
+  tags: dotfiles
