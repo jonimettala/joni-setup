@@ -1,0 +1,16 @@
+---
+- name: Point iTerm2 at the repo's prefs folder
+  community.general.osx_defaults:
+    domain: com.googlecode.iterm2
+    key: PrefsCustomFolder
+    type: string
+    value: "{{ iterm2_prefs_dir }}"
+  tags: iterm2
+
+- name: Enable loading iTerm2 prefs from custom folder
+  community.general.osx_defaults:
+    domain: com.googlecode.iterm2
+    key: LoadPrefsFromCustomFolder
+    type: bool
+    value: true
+  tags: iterm2

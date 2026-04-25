@@ -23,6 +23,8 @@ dotfiles_files:
   - .gitconfig
   - .gitignore_global
 
+iterm2_prefs_dir: "{{ playbook_dir }}/iterm2"
+
 nvm_version: "v0.40.1"
 default_node_version: "node"  # latest stable
 
