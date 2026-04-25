@@ -44,6 +44,7 @@ cd ~/work/repos/joni-setup
 
 **Homebrew casks**
 - `1password-cli` — 1Password CLI
+- `claude-code` — Claude Code
 - `copilot-cli` — GitHub Copilot CLI
 - `iterm2` — iTerm2 terminal
 - `raycast` — Raycast launcher

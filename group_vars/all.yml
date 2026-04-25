@@ -12,6 +12,7 @@ homebrew_formulae:
 
 homebrew_casks:
   - 1password-cli
+  - claude-code
   - copilot-cli
   - iterm2
   - raycast
