@@ -2,7 +2,7 @@
 - name: Create symlinks for dotfiles
   ansible.builtin.file:
     src: "{{ dotfiles_dir }}/{{ item }}"
-    dest: "{{ ansible_env.HOME }}/{{ item }}"
+    dest: "{{ ansible_facts['env']['HOME'] }}/{{ item }}"
     state: link
     force: true
   loop: "{{ dotfiles_files }}"
@@ -10,7 +10,7 @@
 
 - name: Check if ~/.gitconfig.local exists
   ansible.builtin.stat:
-    path: "{{ ansible_env.HOME }}/.gitconfig.local"
+    path: "{{ ansible_facts['env']['HOME'] }}/.gitconfig.local"
   register: gitconfig_local
   tags: dotfiles
 
@@ -30,7 +30,7 @@
 
 - name: Create ~/.gitconfig.local
   ansible.builtin.copy:
-    dest: "{{ ansible_env.HOME }}/.gitconfig.local"
+    dest: "{{ ansible_facts['env']['HOME'] }}/.gitconfig.local"
     content: |
       [user]
       	name = {{ git_name_input.user_input }}
