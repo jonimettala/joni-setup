@@ -1,7 +1,7 @@
 ---
 - name: Check if sdkman is already installed
   ansible.builtin.stat:
-    path: "{{ ansible_env.HOME }}/.sdkman/bin/sdkman-init.sh"
+    path: "{{ ansible_facts['env']['HOME'] }}/.sdkman/bin/sdkman-init.sh"
   register: sdkman_init
   tags: sdkman
 

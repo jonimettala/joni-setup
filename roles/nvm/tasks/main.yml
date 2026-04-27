@@ -7,18 +7,18 @@
 
 - name: Ensure ~/.nvm directory exists
   ansible.builtin.file:
-    path: "{{ ansible_env.HOME }}/.nvm"
+    path: "{{ ansible_facts['env']['HOME'] }}/.nvm"
     state: directory
     mode: "0755"
   tags: nvm
 
 - name: Install default Node.js version via nvm
   ansible.builtin.shell: |
-    export NVM_DIR="{{ ansible_env.HOME }}/.nvm"
+    export NVM_DIR="{{ ansible_facts['env']['HOME'] }}/.nvm"
     source "$(brew --prefix nvm)/nvm.sh"
     nvm install {{ default_node_version }}
     nvm alias default {{ default_node_version }}
   args:
     executable: /bin/bash
-    creates: "{{ ansible_env.HOME }}/.nvm/alias/default"
+    creates: "{{ ansible_facts['env']['HOME'] }}/.nvm/alias/default"
   tags: nvm
