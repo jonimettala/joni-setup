@@ -37,3 +37,4 @@ There are no tests, linters, or build steps. Validation is "re-run the playbook 
 - **iTerm2 prefs are owned by iTerm2, not Ansible.** The `iterm2` role only flips `LoadPrefsFromCustomFolder`/`PrefsCustomFolder` to point at `iterm2/` in the repo. iTerm2 itself reads and writes `iterm2/com.googlecode.iterm2.plist`. Don't add tasks that template or patch the plist — let the GUI write it and commit the diff.
 - **Use Conventional Commits** (`feat:`, `fix:`, `docs:`, `chore:`, etc.) for commit messages. The older history is mixed; new commits should follow the convention.
 - **Never commit directly to `main`.** `main` is protected — pushes are rejected. Always create a topic branch first (`git switch -c <name>`) and commit there, then push the branch and open a PR.
+- **Always update `README.md`** when adding or removing packages in `group_vars/all.yml`. The "What gets installed" section must stay in sync.
