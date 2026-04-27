@@ -16,6 +16,7 @@ homebrew_casks:
   - copilot-cli
   - iterm2
   - drawio
+  - postman
   - raycast
 
 dotfiles_dir: "{{ playbook_dir }}/dotfiles"
