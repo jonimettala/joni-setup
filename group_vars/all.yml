@@ -16,6 +16,7 @@ homebrew_casks:
   - copilot-cli
   - iterm2
   - drawio
+  - obsidian
   - postman
   - raycast
 

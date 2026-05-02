@@ -68,6 +68,7 @@ You can also re-run `./bootstrap.sh` instead. It skips Homebrew and Ansible if t
 - `copilot-cli` — GitHub Copilot CLI
 - `drawio` — draw.io diagramming app
 - `iterm2` — iTerm2 terminal
+- `obsidian` — Obsidian knowledge base
 - `postman` — Postman API client
 - `raycast` — Raycast launcher
 
