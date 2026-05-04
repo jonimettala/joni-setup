@@ -4,6 +4,7 @@
 # Editor
 .idea/
 .vscode/
+.obsidian/
 
 # Environment files - NEVER commit secrets!
 .env
