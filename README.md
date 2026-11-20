@@ -22,7 +22,7 @@ cd ~/dev/repos/joni-setup
 # Run the full playbook
 ansible-playbook playbook.yml -i inventory/local
 
-# Or run only a specific part (homebrew, dotfiles, nvm, sdkman)
+# Or run only a specific part (homebrew, dotfiles, claude, iterm2, nvm, sdkman)
 ansible-playbook playbook.yml -i inventory/local --tags homebrew
 ```
 
@@ -48,6 +48,7 @@ You can also re-run `./bootstrap.sh` instead. It skips Homebrew and Ansible if t
 └── roles/
     ├── homebrew/         # Brew formulae and casks
     ├── dotfiles/         # Symlinks for dotfiles
+    ├── claude/           # Clone claude-config and link it into ~/.claude
     ├── iterm2/           # Point iTerm2 at the repo's prefs folder
     ├── nvm/              # Node Version Manager
     └── sdkman/           # SDKMAN (Java/Kotlin etc.)
@@ -76,6 +77,9 @@ You can also re-run `./bootstrap.sh` instead. It skips Homebrew and Ansible if t
 - `.zshrc`
 - `.gitconfig` — shared git settings; machine-specific user name and email are stored in `~/.gitconfig.local` (created on first run, not tracked in the repo)
 - `.gitignore_global`
+
+**Claude Code config**
+- Personal skills and the global `CLAUDE.md` live in the private repo [`jonimettala/claude-config`](https://github.com/jonimettala/claude-config). The playbook clones it over SSH to `~/dev/repos/claude-config` (only if it's missing; an existing clone is never pulled) and links `~/.claude/CLAUDE.md` and `~/.claude/skills/<name>` (every folder in its `skills/`) into it. A real file or folder already at one of those paths is moved to `~/.claude/claude-config-backup/<timestamp>/` first. Needs an SSH key with access to the repo; re-run `--tags claude` after adding a skill there.
 
 **iTerm2 prefs**
 - The `iterm2/` folder contains `com.googlecode.iterm2.plist`. The playbook configures iTerm2 to load and save its preferences from that folder, so any change made via the iTerm2 GUI shows up as a git diff you can commit. Restart iTerm2 after the first playbook run for the change to take effect.

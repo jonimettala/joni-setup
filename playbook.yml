@@ -6,6 +6,7 @@
   roles:
     - homebrew
     - dotfiles
+    - claude
     - iterm2
     - nvm
     - sdkman

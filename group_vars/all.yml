@@ -32,3 +32,8 @@ nvm_version: "v0.40.1"
 default_node_version: "node"  # latest stable
 
 # sdkman is only installed — install Java versions yourself: sdk install java
+
+# Private repo with personal Claude Code skills and CLAUDE.md, linked into ~/.claude
+claude_config_repo: "git@github.com:jonimettala/claude-config.git"
+claude_config_dir: "{{ ansible_facts['env']['HOME'] }}/dev/repos/claude-config"
+claude_dir: "{{ ansible_facts['env']['HOME'] }}/.claude"

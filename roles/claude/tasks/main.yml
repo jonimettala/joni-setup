@@ -1,0 +1,74 @@
+---
+- name: Clone claude-config (private, needs SSH access)
+  ansible.builtin.git:
+    repo: "{{ claude_config_repo }}"
+    dest: "{{ claude_config_dir }}"
+    update: false
+  tags: claude
+
+- name: Find skills in claude-config
+  ansible.builtin.find:
+    paths: "{{ claude_config_dir }}/skills"
+    file_type: directory
+  register: claude_config_skills
+  tags: claude
+
+- name: Check if claude-config has a CLAUDE.md
+  ansible.builtin.stat:
+    path: "{{ claude_config_dir }}/CLAUDE.md"
+  register: claude_config_md
+  tags: claude
+
+- name: List the ~/.claude paths to link
+  ansible.builtin.set_fact:
+    claude_links: >-
+      {{ claude_config_skills.files | map(attribute='path') | map('basename') | sort
+         | map('regex_replace', '^', 'skills/') | list
+         + (['CLAUDE.md'] if claude_config_md.stat.exists else []) }}
+  tags: claude
+
+- name: Check what is at those paths now
+  ansible.builtin.stat:
+    path: "{{ claude_dir }}/{{ item }}"
+  loop: "{{ claude_links }}"
+  register: claude_existing
+  tags: claude
+
+- name: Create backup folder for real files and folders in the way
+  ansible.builtin.file:
+    path: "{{ claude_dir }}/claude-config-backup/{{ ansible_facts['date_time']['iso8601_basic_short'] }}/{{ item.item | dirname }}"
+    state: directory
+    mode: "0755"
+  loop: "{{ claude_existing.results }}"
+  loop_control:
+    label: "{{ item.item }}"
+  when: item.stat.exists and not item.stat.islnk
+  tags: claude
+
+- name: Back up real files and folders before linking
+  ansible.builtin.command:
+    argv:
+      - mv
+      - "{{ claude_dir }}/{{ item.item }}"
+      - "{{ claude_dir }}/claude-config-backup/{{ ansible_facts['date_time']['iso8601_basic_short'] }}/{{ item.item }}"
+  loop: "{{ claude_existing.results }}"
+  loop_control:
+    label: "{{ item.item }}"
+  when: item.stat.exists and not item.stat.islnk
+  tags: claude
+
+- name: Ensure ~/.claude/skills exists
+  ansible.builtin.file:
+    path: "{{ claude_dir }}/skills"
+    state: directory
+    mode: "0755"
+  tags: claude
+
+- name: Link ~/.claude paths into claude-config
+  ansible.builtin.file:
+    src: "{{ claude_config_dir }}/{{ item }}"
+    dest: "{{ claude_dir }}/{{ item }}"
+    state: link
+    force: true
+  loop: "{{ claude_links }}"
+  tags: claude

@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this repo is
 
-An Ansible playbook that provisions a personal macOS machine: Homebrew packages, dotfile symlinks, iTerm2 prefs, nvm, and SDKMAN. The target host is always `localhost` (see `inventory/local`).
+An Ansible playbook that provisions a personal macOS machine: Homebrew packages, dotfile symlinks, Claude Code config links (from the private `jonimettala/claude-config` repo), iTerm2 prefs, nvm, and SDKMAN. The target host is always `localhost` (see `inventory/local`).
 
 ## Common commands
 
